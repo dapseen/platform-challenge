@@ -6,6 +6,8 @@
 3. kubectl
 
 
+![Architectural Diagram] (https://github.com/dapseen/platform-challenge/blob/main/platfrom%20challenge.drawio.png)
+
 
 ## Setting up the Environment
 
