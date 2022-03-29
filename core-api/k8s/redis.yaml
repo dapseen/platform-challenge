@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  labels:
+    apps: redis
+  namespace: prod 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: redis
+  template:
+    metadata:
+      labels:
+        component: redis
+    spec:
+      containers:
+      - name: redis
+        image: redis:alpine
+        imagePullPolicy: Always
+        resources: 
+          requests:
+            memory: "128Mi" #default 256Mi
+        ports:
+          - containerPort: 6379   
+      
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+  labels:
+    app: redis
+    service: redis
+  namespace: prod
+spec:
+  type: ClusterIP
+  selector:
+    component: redis
+  ports:
+  - name: redis
+    port: 6379
+    targetPort: 6379
