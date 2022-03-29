@@ -27,6 +27,9 @@
 The k8s file contains the kubernetes manifest, which will be used to deploy your config minikube, you really dont have much to do here unless you want to change the image tag.
 
 
+## Service based routing
+
+The http host is gr4vy.info which was declared in the ingress file, to set this up, please update your `/etc/host` file
 
 
 
