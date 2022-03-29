@@ -1,2 +1,34 @@
-# How to run this Project on Kubernetes
+# How to run this Project on Kubernetes ( minikube )
+
+## Requirements
+1. Minikube installed
+2. Docker desktop
+3. kubectl
+
+
+
+## Setting up the Environment
+
+1. `$ Minikube start` - to start the local k8s server
+2. `$ kubectl create ns prod` - This create a prod namespace where all the workloads will be deployed 
+
+
+## Setting up Auth-API ( This process is similar to Core API and P2P)
+
+1. Cd in to auth-api folder and run `eval $(minikube docker-env)` this allow minikube to make use of local images without having to push your docker image to a public repo.
+2. `$ docker build -it auth-api .` to build the image
+3. This builds an auth-api image with tag latest
+4. `$ minkube tunnel` to setup a loadbalancer for Auth-API service
+
+## About K8s (Kubernetes) file
+
+The k8s file contains the kubernetes manifest, which will be used to deploy your config minikube, you really dont have much to do here unless you want to change the image tag.
+
+
+
+
+
+
+
+
 
