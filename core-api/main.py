@@ -33,7 +33,7 @@ def create_transaction():
         return jsonify(error=str(exc)), 422
     else:
         if payload['enabled']:
-            rq.get_queue().enqueue(
+            rq.get_queue().enqueue( #https://gist.github.com/dapseen/646c3286317278c6769c066b7944204e We might need to change the implementation here, the library is trying to connect using localhost
                 '__main__.make_transaction',
                 user_id=payload['user_id'],
                 amount=amount,

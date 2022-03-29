@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: psp
+  labels:
+    apps: psp
+  namespace: prod 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: psp
+  template:
+    metadata:
+      labels:
+        component: psp
+    spec:
+      containers:
+      - name: psp
+        image: psp:latest
+        imagePullPolicy: Never
+        resources: 
+          requests:
+            memory: "128Mi" #default 256Mi
+        ports:
+          - containerPort: 3000  
+        env:
+          - name: JWT_SECRET
+            value: "secret"
+          - name: REDIS_URL
+            value: "redis://redis:6379/0"
+          - name: HTTP_PORT
+            value: "3000" 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: psp
+  labels:
+    app: psp
+    service: psp
+  namespace: prod
+spec:
+  type: ClusterIP
+  selector:
+    component: psp
+  ports:
+  - name: psp
+    port: 3002
+    targetPort: 3000
+    

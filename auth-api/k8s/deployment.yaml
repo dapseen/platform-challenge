@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authapi
+  labels:
+    apps: authapi
+  namespace: prod 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: authapi
+  template:
+    metadata:
+      labels:
+        component: authapi
+    spec:
+      containers:
+      - name: authapi
+        image: auth-api:latest
+        imagePullPolicy: Never
+        resources: 
+          requests:
+            memory: "128Mi" #default 256Mi
+        ports:
+          - containerPort: 5000  
+        env:
+          - name: JWT_SECRET
+            value: "secret"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: authapi
+  labels:
+    app: authapi
+    service: authapi
+  namespace: prod
+spec:
+  type: LoadBalancer
+  selector:
+    component: authapi
+  ports:
+  - name: authapi
+    port: 3000
+    targetPort: 5000
+    
