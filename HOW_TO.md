@@ -4,9 +4,9 @@
 
 This installation guide was tested on Macos Monterey
 
-1. Minikube installed
-2. Docker desktop
-3. kubectl
+1. ![Minikube](https://formulae.brew.sh/formula/minikube) installed via MacOs package Manager (![brew](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-homebrew-on-macos) please follow this guide if you dont have brew installed already on your machine). 
+2. ![Docker desktop](https://docs.docker.com/desktop/mac/install/) - This guide will help you to setup docker desktop on your MacOs
+3. [!kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/) - I recommend follow the official kubernetes documentation to achieve kubectl installation
 
 
 
