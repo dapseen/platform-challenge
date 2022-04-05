@@ -41,18 +41,54 @@ ingress-nginx-admission-patch--1-hhslv      0/1     Completed   0             7d
 ingress-nginx-controller-5f66978484-74h6s   1/1     Running     0    7d7h 
 
 ```
-3. 
+3. Open a new terminal and run `eval $(minikube docker-env)`
+
+4. To start the tunnel run `minikube tunnel`
 
 
+
+## Service based routing
+
+The http host is gr4vy.info which was declared in the ingress file, to set this up, please update your `/etc/host` file
+
+
+```
+⚡  http gr4vy.info/authapi/health
+
+HTTP/1.1 200
+Connection: keep-alive
+Content-Length: 29
+Content-Type: application/json
+Date: Tue, 05 Apr 2022 18:11:58 GMT
+
+{
+    "checks": {},
+    "status": "pass"
+}
+
+
+⚡  http gr4vy.info/coreapi/health
+
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Length: 30
+Content-Type: application/json
+Date: Tue, 05 Apr 2022 18:12:37 GMT
+
+{
+    "checks": {},
+    "status": "pass"
+}
+
+
+```
+You should get this sample response
 
 ## About K8s (Kubernetes) file
 
 The k8s file contains the kubernetes manifest, which will be used to deploy your config minikube, you really dont have much to do here unless you want to change the image tag.
 
 
-## Service based routing
-
-The http host is gr4vy.info which was declared in the ingress file, to set this up, please update your `/etc/host` file
 
 
 
