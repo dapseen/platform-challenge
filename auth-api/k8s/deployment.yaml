@@ -37,7 +37,7 @@ metadata:
     service: authapi
   namespace: prod
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     component: authapi
   ports:

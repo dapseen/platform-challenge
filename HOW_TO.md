@@ -7,7 +7,7 @@ This installation guide was tested on Macos Monterey
 1. [Minikube](https://formulae.brew.sh/formula/minikube) installed via MacOs package Manager ([brew](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-homebrew-on-macos) please follow this guide if you dont have brew installed already on your machine). 
 2. [Docker desktop](https://docs.docker.com/desktop/mac/install/) - This guide will help you to setup docker desktop on your MacOs
 3. [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/) - I recommend follow the official kubernetes documentation to achieve kubectl installation
-4. Understand of how kubernetes works is very importand for this guide
+4. Understanding of how kubernetes works is very importand for this guide
 
 
 
@@ -27,7 +27,23 @@ This installation guide was tested on Macos Monterey
 3. This builds an auth-api image with tag latest
 4. `cd` in to `k8s/` folder and run the deployment using this command `kubectl apply -f deployment.yaml`.
 5. Verify the state of your pod `kubectl get pods -n prod`
-4. `$ minkube tunnel` to setup a loadbalancer for Auth-API service
+
+
+## setting up minikube tunnel
+
+1. Run this command to enable minikube ingress `minikube addons enable ingress`
+2. Verify your setup by running `kubectl get pods -n ingress-nginx`. You should have something similar to this
+
+```
+NAME                                        READY   STATUS      RESTARTS      AGE
+ingress-nginx-admission-create--1-b6lh7     0/1     Completed   0             7d7h
+ingress-nginx-admission-patch--1-hhslv      0/1     Completed   0             7d7h
+ingress-nginx-controller-5f66978484-74h6s   1/1     Running     0    7d7h 
+
+```
+3. 
+
+
 
 ## About K8s (Kubernetes) file
 

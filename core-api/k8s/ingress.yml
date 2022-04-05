@@ -4,20 +4,20 @@ metadata:
   name: gr4vy-ingress
   namespace: prod
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/rewrite-target: /$2 # introduced URL rewrite to target multiple backend service and helps in routing to the service 
 spec:
   rules:
     - host: gr4vy.info
       http:
         paths:
-          - path: /
+          - path: /authapi(/|$)(.*)
             pathType: Prefix
             backend:
               service:
                 name: authapi
                 port:
                   number: 3000
-          - path: /
+          - path: /coreapi(/|$)(.*)
             pathType: Prefix
             backend:
               service:

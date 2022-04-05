@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: coreapi
-        image: core-api:b3
+        image: core-api:latest
         imagePullPolicy: Never
         resources: 
           requests:
@@ -41,7 +41,7 @@ metadata:
     service: coreapi
   namespace: prod
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     component: coreapi
   ports:
